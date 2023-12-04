@@ -10,14 +10,28 @@ public class JailbreakPlugin : BasePlugin
 
     public override string ModuleVersion => "0.0.1";
 
+    public Database _db;
     private EventHooks _eventHooks;
+    public JailCore _jailCore;
+    public DopeMenu _dopeMenu;
 
     public override void Load(bool hotReload)
     {
+        base.Load(hotReload);
+
         if (_instance == null) _instance = this;
         Console.WriteLine("Hello World!");
 
-        _eventHooks = new EventHooks(this);
-        _eventHooks.Initialize();
+
+        //_db = new Database(this);
+        //_db.Initialize();
+        //
+        //_eventHooks = new EventHooks(this, _db);
+        //_eventHooks.Initialize();
+
+        //_jailCore = new JailCore(this);
+        //
+        //_dopeMenu = new DopeMenu(this);
+        //_dopeMenu.Initialize();
     }
 }
