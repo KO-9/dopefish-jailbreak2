@@ -61,7 +61,7 @@ namespace JailbreakPlugin
         {
             CCSPlayerController? player = @event.Userid;
 
-            if (player != null && player.is_valid())
+            if (player != null && player.IsValid)
             {
                 _plugin._jailCore.playerConnect(player, info);
             }

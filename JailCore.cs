@@ -34,6 +34,10 @@ namespace JailbreakPlugin
         private void displayCash(CCSPlayerController? player, CommandInfo commandInfo)
         {
             var jail_player = playerToJailPlayer(player);
+            if (!jail_player.cashLoaded)
+            {
+                jail_player.Cash = _plugin._db.load_cash(jail_player);
+            }
             player.announce(String.Empty, $"You have ${jail_player.Cash}");
         }
 
@@ -84,7 +88,8 @@ namespace JailbreakPlugin
             {
                 var jail_player = jail_players[slot.Value];
                 jail_player.load(player);
-                jail_player.Cash =  _plugin._db.load_cash(jail_players[slot.Value]);
+                jail_player.Cash =  _plugin._db.load_cash(jail_player);
+                jail_player.cashLoaded = true;
             }
         }
     }

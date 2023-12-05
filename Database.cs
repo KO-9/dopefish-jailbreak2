@@ -109,6 +109,7 @@ namespace JailbreakPlugin
                 {
                     var cash = reader.GetInt32(0);
                     Server.PrintToConsole("cash:" + cash);
+                    player.cashLoaded = true;
                     return cash;
                 }
             }

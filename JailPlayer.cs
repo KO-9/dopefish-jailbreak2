@@ -11,10 +11,13 @@ public class JailPlayer
     public UInt64 SteamID { get; set; }
     public int Cash { get; set; }
 
+    public bool cashLoaded { get; set; }
+
     public CCSPlayerController? Player { get; set; }
 
     public JailPlayer()
     {
+        cashLoaded = false;
         Cash = 0;
     }
 
