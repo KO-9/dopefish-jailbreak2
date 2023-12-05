@@ -23,15 +23,16 @@ public class JailbreakPlugin : BasePlugin
         Console.WriteLine("Hello World!");
 
 
-        //_db = new Database(this);
-        //_db.Initialize();
-        //
-        //_eventHooks = new EventHooks(this, _db);
-        //_eventHooks.Initialize();
+        _db = new Database(this);
+        _db.Initialize();
+        
+        _eventHooks = new EventHooks(this, _db);
+        _eventHooks.Initialize();
 
-        //_jailCore = new JailCore(this);
-        //
-        //_dopeMenu = new DopeMenu(this);
-        //_dopeMenu.Initialize();
+        _jailCore = new JailCore(this);
+        _jailCore.Initialize();
+        
+        _dopeMenu = new DopeMenu(this);
+        _dopeMenu.Initialize();
     }
 }

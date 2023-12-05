@@ -1,5 +1,6 @@
 ﻿using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
+using CounterStrikeSharp.API.Modules.Commands;
 using CounterStrikeSharp.API.Modules.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,17 @@ namespace JailbreakPlugin
             {
                 jail_players[p] = new JailPlayer();
             }
+        }
+
+        public void Initialize()
+        {
+            _plugin.AddCommand("cash", "Show your cash", displayCash);
+        }
+
+        private void displayCash(CCSPlayerController? player, CommandInfo commandInfo)
+        {
+            var jail_player = playerToJailPlayer(player);
+            player.announce(String.Empty, $"You have ${jail_player.Cash}");
         }
 
         JailPlayer? playerToJailPlayer(CCSPlayerController? player)
@@ -58,22 +70,22 @@ namespace JailbreakPlugin
 
         }
 
-        public void playerSpawn(EventPlayerSpawn @event, GameEventInfo _)
+        public void playerSpawn(CCSPlayerController player, GameEventInfo _)
         {
-            var player = @event.Userid;
+
         }
 
-        public void playerConnect(EventPlayerConnect @event, GameEventInfo info)
+        public void playerConnect(CCSPlayerController player, GameEventInfo info)
         {
-            var player = @event.Userid;
+            Server.PrintToConsole("playerConnect");
             var slot = player.slot();
 
-            //if (slot != null)
-            //{
-            //    var jail_player = jail_players[slot.Value];
-            //    jail_player.load(player);
-            //    jail_player.Cash =  _plugin._db.load_cash(jail_players[slot.Value]);
-            //}
+            if (slot != null)
+            {
+                var jail_player = jail_players[slot.Value];
+                jail_player.load(player);
+                jail_player.Cash =  _plugin._db.load_cash(jail_players[slot.Value]);
+            }
         }
     }
 }
