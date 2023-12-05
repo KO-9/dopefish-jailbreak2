@@ -15,6 +15,7 @@ namespace JailbreakPlugin
         private JailbreakPlugin _plugin;
 
         private MySqlConnection _connection;
+        private string _connectionString;
 
         public Database(JailbreakPlugin plugin)
         {
@@ -32,10 +33,10 @@ namespace JailbreakPlugin
             // Read configuration from INI file
             bool configReadSuccessfully = readFromCfg(out dbHostname, out dbUsername, out dbPassword, out dbDatabase);
 
-            var dbConnectionString = $"server={dbHostname};database={dbDatabase};uid={dbUsername};password={dbPassword};";
-            //connect to database using mysql connector
-            _connection = new MySqlConnection(dbConnectionString);
-            _connection.Open();
+            _connectionString = $"server={dbHostname};database={dbDatabase};uid={dbUsername};password={dbPassword};Pooling=true;";
+            ////connect to database using mysql connector
+            //_connection = new MySqlConnection(_connectionString);
+            //_connection.Open();
         }
 
         protected bool readFromCfg(out string dbHostname, out string dbUsername, out string dbPassword, out string dbDatabase)
@@ -97,34 +98,28 @@ namespace JailbreakPlugin
 
         public int load_cash(JailPlayer player)
         {
-            var steamid = player.SteamID;
-
-            var query = $"SELECT cash FROM `dopecash` WHERE steamid = '{steamid}' LIMIT 1";
-            var cmd = new MySqlCommand(query, _connection);
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
+            using (var connection = new MySqlConnection(_connectionString))
             {
-                var cash = reader.GetInt32(0);
-                //Server.PrintToConsole("cash:" + cash);
-                return cash;
+                connection.Open();
+
+                Server.PrintToConsole("load_cash");
+                var steamid = player.SteamID;
+
+                var query = $"SELECT money FROM `dopecash` WHERE steamid = '{steamid}' LIMIT 1";
+                var cmd = new MySqlCommand(query, connection);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var cash = reader.GetInt32(0);
+                    Server.PrintToConsole("cash:" + cash);
+                    //player.Player.announce(String.Empty, $"Loaded ${cash} cash!");
+                    return cash;
+                }
             }
             return 0;
         }
 
-        public bool give_cash(CCSPlayerController player, int cashAmount, int cashReason) {
-            var query = "SELECT * FROM `player` LIMIT 1";
-            var cmd = new MySqlCommand(query, _connection);
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                var id = reader.GetInt32(0);
-                var steamid = reader.GetString(1);
-                var name = reader.GetString(5);
-                Server.PrintToConsole("id:" + id);
-                Server.PrintToConsole("name:" + name);
-                Server.PrintToConsole("steamid:" + steamid);
-            }
-            player.announce(String.Empty, $"You have been given ${cashAmount}!");
+        public bool give_cash(JailPlayer player, int cashAmount, int cashReason) {
             return false;
         }
     }

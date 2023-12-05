@@ -20,18 +20,18 @@ public class JailbreakPlugin : BasePlugin
         base.Load(hotReload);
 
         if (_instance == null) _instance = this;
-        Console.WriteLine("Hello World!");
+        Console.WriteLine("Plugin loaded");
 
+        _db = new Database(this);
+        _db.Initialize();
+        
+        _eventHooks = new EventHooks(this, _db);
+        _eventHooks.Initialize();
 
-        //_db = new Database(this);
-        //_db.Initialize();
-        //
-        //_eventHooks = new EventHooks(this, _db);
-        //_eventHooks.Initialize();
-
-        //_jailCore = new JailCore(this);
-        //
-        //_dopeMenu = new DopeMenu(this);
-        //_dopeMenu.Initialize();
+        _jailCore = new JailCore(this);
+        _jailCore.Initialize();
+        
+        _dopeMenu = new DopeMenu(this);
+        _dopeMenu.Initialize();
     }
 }
