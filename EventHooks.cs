@@ -27,7 +27,7 @@ namespace JailbreakPlugin
         {
             _plugin.RegisterEventHandler<EventPlayerDeath>(PlayerDeathHandler);
             _plugin.RegisterEventHandler<EventPlayerSpawn>(PlayerSpawnHandler);
-            _plugin.RegisterEventHandler<EventPlayerConnect>(OnPlayerConnect);
+            //_plugin.RegisterEventHandler<EventPlayerConnect>(OnPlayerConnect);
         }
 
         private HookResult PlayerSpawnHandler(EventPlayerSpawn @event, GameEventInfo _)
@@ -36,8 +36,7 @@ namespace JailbreakPlugin
 
             if (player.is_valid() && !player.IsBot)
             {
-                //copy EventPlayerSpawn to a new object
-                _plugin.AddTimer(0.5f, () => _plugin._jailCore.playerSpawn(player, _));
+                //_plugin.AddTimer(0.5f, () => _plugin._jailCore.playerSpawn(@event, _));
             }
 
             return HookResult.Continue;
@@ -49,11 +48,12 @@ namespace JailbreakPlugin
             var victim = @event.Userid;
             var headshot = @event.Headshot;
 
-            if (attacker.IsValid && victim.IsValid && (attacker != victim) && !attacker.IsBot)
+            //_plugin._jailCore.playerDeath(@event, _);
+            /*if (attacker.IsValid && victim.IsValid && (attacker != victim) && !attacker.IsBot)
             {
                 //@event
-                _plugin._jailCore.playerDeath(attacker, victim, headshot, _);
-            }
+                _plugin._jailCore.playerDeath(@event, _);
+            }*/
 
             return HookResult.Continue;
         }
@@ -64,7 +64,7 @@ namespace JailbreakPlugin
 
             if (player != null && player.is_valid())
             {
-                _plugin._jailCore.playerConnect(player, info);
+                //_plugin._jailCore.playerConnect(@event, info);
             }
 
             return HookResult.Continue;
