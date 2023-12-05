@@ -1,0 +1,12 @@
+F:\development\cs2\Dopefish\jailbreak\Jailbreak\bin\Debug\net7.0\Jailbreak.deps.json
+F:\development\cs2\Dopefish\jailbreak\Jailbreak\bin\Debug\net7.0\Jailbreak.dll
+F:\development\cs2\Dopefish\jailbreak\Jailbreak\bin\Debug\net7.0\Jailbreak.pdb
+F:\development\cs2\Dopefish\jailbreak\Jailbreak\obj\Debug\net7.0\Jailbreak.csproj.AssemblyReference.cache
+F:\development\cs2\Dopefish\jailbreak\Jailbreak\obj\Debug\net7.0\Jailbreak.GeneratedMSBuildEditorConfig.editorconfig
+F:\development\cs2\Dopefish\jailbreak\Jailbreak\obj\Debug\net7.0\Jailbreak.AssemblyInfoInputs.cache
+F:\development\cs2\Dopefish\jailbreak\Jailbreak\obj\Debug\net7.0\Jailbreak.AssemblyInfo.cs
+F:\development\cs2\Dopefish\jailbreak\Jailbreak\obj\Debug\net7.0\Jailbreak.csproj.CoreCompileInputs.cache
+F:\development\cs2\Dopefish\jailbreak\Jailbreak\obj\Debug\net7.0\Jailbreak.dll
+F:\development\cs2\Dopefish\jailbreak\Jailbreak\obj\Debug\net7.0\refint\Jailbreak.dll
+F:\development\cs2\Dopefish\jailbreak\Jailbreak\obj\Debug\net7.0\Jailbreak.pdb
+F:\development\cs2\Dopefish\jailbreak\Jailbreak\obj\Debug\net7.0\ref\Jailbreak.dll
