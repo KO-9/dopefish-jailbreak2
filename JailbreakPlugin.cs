@@ -1,4 +1,5 @@
 ﻿using CounterStrikeSharp.API.Core;
+using Dopefish;
 
 namespace JailbreakPlugin;
 public class JailbreakPlugin : BasePlugin

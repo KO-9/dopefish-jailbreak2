@@ -17,5 +17,9 @@
 
     </Reference>
 
+    <Reference Include="DopeMenu">
+      <HintPath>..\..\dopemenu\DopeMenu\bin\Release\net7.0\DopeMenu.dll</HintPath>
+    </Reference>
+
   </ItemGroup>
 </Project>
